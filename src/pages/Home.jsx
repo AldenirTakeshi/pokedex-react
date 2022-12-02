@@ -22,11 +22,11 @@ const Home = () => {
       <NavBar />
       <Container maxWidth="xl">
         <Grid container>
-          {pokemons.map((pokemon) => {
-            <Grid item xs={3}>
-              <PokemonCard />
-            </Grid>;
-          })}
+          {pokemons.map((pokemon, key) => (
+            <Grid item xs={3} key={key}>
+              <PokemonCard name={pokemon.name} />
+            </Grid>
+          ))}
         </Grid>
       </Container>
     </>
