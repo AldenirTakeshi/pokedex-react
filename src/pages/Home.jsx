@@ -12,19 +12,32 @@ const Home = () => {
   }, []);
 
   const getPokemon = () => {
-    axios
-      .get("https://pokeapi.co/api/v2/pokemon?limit=50")
-      .then((res) => setPokemons(res.data.results))
+    let endpoints = [];
+    for (let i = 1; i < 50; i++) {
+      endpoints.push(`http://pokeapi.co/api/v2/pokemon/${i}/`);
+    }
+    console.log(endpoints);
+    let response = axios
+      .all(endpoints.map((endpoint) => axios.get(endpoint)))
+      .then((res) => setPokemons(res))
       .catch((err) => console.log(err));
+
+    // axios
+    //   .get("https://pokeapi.co/api/v2/pokemon?limit=50")
+    //   .then((res) => setPokemons(res.data.results))
+    //   .catch((err) => console.log(err));
   };
   return (
     <>
       <NavBar />
       <Container maxWidth="xl">
-        <Grid container>
+        <Grid container spacing={3}>
           {pokemons.map((pokemon, key) => (
-            <Grid item xs={3} key={key}>
-              <PokemonCard name={pokemon.name} />
+            <Grid item xs={2} key={key}>
+              <PokemonCard
+                name={pokemon.data.name}
+                image={pokemon.data.sprites.front_default}
+              />
             </Grid>
           ))}
         </Grid>
