@@ -3,7 +3,6 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
 
@@ -21,11 +20,16 @@ export default function PokemonCard({ name, image, types }) {
         component="img"
         // height="140"
         image={image}
-        alt="green iguana"
+        alt="pokemons"
       />
       <CardContent>
         <Box display="flex" justifyContent="space-between" alignItems="center">
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography
+            gutterBottom
+            variant="h7"
+            component="div"
+            fontWeight={800}
+          >
             {name}
           </Typography>
           <Typography gutterBottom variant="caption" component="div">
